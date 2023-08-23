@@ -4,43 +4,38 @@ from random import choice, randint, shuffle
 import pyperclip  # can copy text to clipboard automatically
 
 
-# def calculate_energy_rate():
+def calculate_energy_rate():
+    try:
+        energy_used = float(energy_entry.get())
+        total_energy = energy_used * 1.5
+        result_label.config(text=f"Total Energy: {total_energy:.2f}")
+    except ValueError:
+        result_label.config(text="Invalid input. Please enter a valid number.")
 
 
 # -----UI SETUP -----#
 window = Tk()
-window.title("Water & Power Generator")
+window.title("Energy Calculator")
 window.config(padx=50, pady=50)
 
 canvas = Canvas(height=300, width=400)
 green_tech_image = PhotoImage(file="Images/green_tech.png")
-canvas.create_image(200, 150, image=green_tech_image)  # cut (x,y) by half to center
+canvas.create_image(200, 150, image=green_tech_image)
 canvas.grid(column=1, row=0)
 
-
 # Labels
-energy_used = Label(text="Energy used")
-energy_used.grid(column=0, row=1)
-email_label = Label(text="Email / Username:")
-email_label.grid(column=0, row=2)
-password_label = Label(text="Password:")
-password_label.grid(column=0, row=3)
+energy_label = Label(text="Total Energy Used:")
+energy_label.grid(column=0, row=1)
+result_label = Label(text="", font=("Helvetica", 12, "bold"))
+result_label.grid(column=1, row=2)
 
 # Entries
-website_entry = Entry(width=40)
-website_entry.grid(column=1, row=1, columnspan=2)
-website_entry.focus()  # focuses to this entry to start typing right away when launched
-email_entry = Entry(width=40)
-email_entry.grid(column=1, row=2, columnspan=2)
-email_entry.insert(0, "test@gmail.com")  # inserts prepopulated text (0 for start, END for end of another text)
-password_entry = Entry(width=22)
-password_entry.grid(column=1, row=3)
+energy_entry = Entry(width=15)
+energy_entry.grid(column=1, row=1)
+energy_entry.focus()
 
 # Buttons
-#  = Button(text="Generate Password", command=)
-# .grid(column=2, row=3)
-#  = Button(text="Add", width=38, command=save)
-# .grid(column=1, row=4, columnspan=2)
-
+calculate_button = Button(text="Calculate Total Energy", command=calculate_energy_rate)
+calculate_button.grid(column=2, row=1)
 
 window.mainloop()
