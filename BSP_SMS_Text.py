@@ -14,7 +14,7 @@ sms = vonage.Sms(client)
 
 # Function that sends message to user
 def send_message():
-    message = "Rates are lower! Time to water your plants!\n\n"
+    message = "ENTER YOUR MESSAGE HERE"
 
     response_data = sms.send_message({
         "from": "YOUR VONAGE NUMBER",
@@ -29,7 +29,7 @@ def send_message():
 
 
 # Schedule when to send the message (e.g., daily at 9:00 AM)
-schedule.every().day.at("19:04").do(send_message)
+schedule.every().day.at("09:00").do(send_message)
 
 # Loop to run scheduled text the scheduler
 while True:
