@@ -3,11 +3,11 @@ import vonage
 import schedule
 import time
 
-# Your Plivo Auth ID and Auth Token
+# Your Vonage Auth ID and Auth Token
 vonage_key = os.environ.get("VONAGE_KEY")
 vonage_secret = os.environ.get("VONAGE_SECRET")
 
-# Create a Plivo client
+# Create a Vonage client
 client = vonage.Client(key=vonage_key, secret=vonage_secret)
 sms = vonage.Sms(client)
 
@@ -31,7 +31,7 @@ def send_message():
 # Schedule when to send the message (e.g., daily at 9:00 AM)
 schedule.every().day.at("09:00").do(send_message)
 
-# Loop to run scheduled text the scheduler
+# Loop to run scheduled texts
 while True:
     schedule.run_pending()
     time.sleep(1)
